@@ -1,11 +1,8 @@
 name: Deploy API to AWS (ECR + ECS Express Mode)
 
+# Manual only: click "Run workflow" in the GitHub Actions tab.
+# Needs the AWS sign-in setup (README Part 5 / guide Part 10) before it can succeed.
 on:
-  push:
-    branches: [main]
-    paths:
-      - "poetry-api/**"
-      - ".github/workflows/deploy-api.yml"
   workflow_dispatch:
 
 permissions:
