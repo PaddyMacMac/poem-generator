@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:8080
+
+### Generate a poem
+POST {{baseUrl}}/poems
+Content-Type: application/json
+
+{
+  "genre": "frustrated",
+  "theme": "code review comments"
+}
+
+### Validation: blank genre (expect 400 Bad Request)
+POST {{baseUrl}}/poems
+Content-Type: application/json
+
+{
+  "genre": " ",
+  "theme": "code review comments"
+}
+
+### Validation: missing theme (expect 400 Bad Request)
+POST {{baseUrl}}/poems
+Content-Type: application/json
+
+{
+  "genre": "haiku"
+}

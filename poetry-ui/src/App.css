@@ -1,0 +1,188 @@
+:root {
+  --brand-1: #4f46e5;
+  --brand-2: #9333ea;
+  --brand-3: #db2777;
+  --poem-font: Georgia, "Times New Roman", serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Top bar ---------- */
+.app-navbar {
+  background: rgba(var(--bs-body-bg-rgb), 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.65rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  color: #fff;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.18), transparent 45%),
+    linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 55%, var(--brand-3) 100%);
+  padding: 3.5rem 0 6.5rem;
+}
+
+.hero h1 {
+  letter-spacing: -0.02em;
+}
+
+.hero .lead {
+  opacity: 0.9;
+}
+
+.stack-pill {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ---------- Layout ---------- */
+.app-container {
+  max-width: 720px;
+}
+
+.pull-up {
+  margin-top: -4.5rem;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.generator-card {
+  box-shadow: 0 1rem 2.5rem rgba(79, 70, 229, 0.18);
+}
+
+/* ---------- Form ---------- */
+.genre-chip {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.genre-chip:hover {
+  transform: translateY(-1px);
+}
+
+.btn-brand {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--brand-1);
+  --bs-btn-border-color: var(--brand-1);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #4338ca;
+  --bs-btn-hover-border-color: #4338ca;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #3730a3;
+  --bs-btn-active-border-color: #3730a3;
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--brand-1);
+  --bs-btn-disabled-border-color: var(--brand-1);
+  --bs-btn-focus-shadow-rgb: 79, 70, 229;
+  background-image: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  border: 0;
+}
+
+.btn-brand:hover {
+  background-image: linear-gradient(135deg, #4338ca, #7e22ce);
+}
+
+.btn-brand:active {
+  transform: scale(0.99);
+}
+
+.chip-active {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--brand-1);
+  --bs-btn-border-color: var(--brand-1);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #4338ca;
+  --bs-btn-hover-border-color: #4338ca;
+}
+
+/* ---------- Poem ---------- */
+.poem-card {
+  position: relative;
+  border-left: 0.35rem solid var(--brand-2) !important;
+  animation: fade-in 0.4s ease-out;
+}
+
+.poem-title {
+  font-family: var(--poem-font);
+  letter-spacing: -0.01em;
+}
+
+.poem-text {
+  white-space: pre-line;
+  font-family: var(--poem-font);
+  font-size: 1.2rem;
+  line-height: 1.85;
+}
+
+.poem-skeleton {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+/* ---------- History ---------- */
+.history-item {
+  transition: background-color 0.12s ease;
+}
+
+.history-item:hover {
+  background-color: var(--bs-tertiary-bg);
+}
+
+/* ---------- Footer ---------- */
+.app-footer {
+  margin-top: auto;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poem-card,
+  .poem-skeleton {
+    animation: none;
+  }
+  .genre-chip,
+  .history-item {
+    transition: none;
+  }
+}

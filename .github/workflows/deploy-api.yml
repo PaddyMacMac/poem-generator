@@ -1,0 +1,48 @@
+name: Deploy API to AWS (ECR + ECS Express Mode)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "poetry-api/**"
+      - ".github/workflows/deploy-api.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # lets GitHub request a short-lived AWS token (OIDC)
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push image
+        id: image
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+        run: |
+          IMAGE="$REGISTRY/$REPOSITORY:${GITHUB_SHA}"
+          docker build -t "$IMAGE" poetry-api
+          docker push "$IMAGE"
+          echo "uri=$IMAGE" >> "$GITHUB_OUTPUT"
+
+      - name: Roll out the new image
+        env:
+          SERVICE_ARN: ${{ vars.ECS_SERVICE_ARN }}
+          IMAGE_URI: ${{ steps.image.outputs.uri }}
+        run: |
+          aws ecs update-express-gateway-service \
+            --service-arn "$SERVICE_ARN" \
+            --primary-container "image=$IMAGE_URI"

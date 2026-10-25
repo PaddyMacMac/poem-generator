@@ -1,0 +1,14 @@
+.idea/
+*.iml
+node_modules/
+dist/
+target/
+.env.production
+.env.local
+*.log
+
+# AWS setup files from the README (contain account details)
+trust-*.json
+container.json
+secret-access.json
+deploy-permissions.json
