@@ -24,7 +24,6 @@ const TopBar = () => (
         <span className="brand-mark fs-5" aria-hidden="true">🪶</span>
         Poetry Demo
       </span>
-            <span className="badge text-bg-light border d-none d-sm-inline">Powered by Gemini</span>
         </div>
     </nav>
 );
@@ -33,16 +32,9 @@ const Hero = () => (
     <header className="hero">
         <div className="container app-container text-center text-md-start">
             <h1 className="display-5 fw-bold mb-3">Turn any idea into a poem</h1>
-            <p className="lead mb-4">
+            <p className="lead mb-0">
                 Pick a style, give it a theme, and let the AI do the rhyming.
             </p>
-            <div className="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
-                {["Spring Boot", "Spring AI", "Gemini", "AWS"].map((tech) => (
-                    <span key={tech} className="badge rounded-pill stack-pill px-3 py-2">
-            {tech}
-          </span>
-                ))}
-            </div>
         </div>
     </header>
 );
