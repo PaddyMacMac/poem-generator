@@ -252,7 +252,7 @@ On the **Variables** tab, **New repository variable**:
 
 | Name | Value |
 | --- | --- |
-| `AWS_REGION` | `eu-west-2` |
+| `AWS_REGION` | `eu-north-1` |
 | `ECR_REPOSITORY` | `poetry-api` |
 | `ECS_SERVICE_ARN` | the service ARN from Part 3e |
 
